@@ -63,7 +63,7 @@ $(function() {
             expect(body.hasClass('menu-hidden')).toBe(true);
           });
 
-    })
+    });
 
     /* Copied from the RSS Feeds.*/
     describe("Initial Entries", function(){
