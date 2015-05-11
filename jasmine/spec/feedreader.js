@@ -38,7 +38,7 @@ $(function() {
          /* Also copied from the content included with the RSS Feed and modified to include a check to insure that the name is not empty. Loops through the names to make sure they exist and have some content.*/
          it('has name', function(){
             for(var i in allFeeds){
-                expect(allFeeds[i].name).not.toEqual(jasmine.any(Number));
+                expect(typeof(allFeeds[i].name)).toBe('string');
                 expect(allFeeds[i].name.length).not.toBe(0);
             }
         });
@@ -75,13 +75,17 @@ $(function() {
          it('feed has loaded', function(){
             expect($('.feed').length).toBeGreaterThan(0);
          });
+        afterEach(function(done){
+            loadFeed(0, done);
+        });
     });
 
     /* Copied from the RSS Feeds*/
-    describe("New Feed Selection", function(){
+    describe("New Feed Selection", function(done){
         var oldFeed;
         var newFeed;
         $('.feed').empty();
+        loadFeed(0, done);
 
         /* Changes the feeds based on the selection on the menu. Tests that each feed has content different from the previous feeds*/
         beforeEach(function(done){
@@ -90,7 +94,7 @@ $(function() {
         });
         it('Loading a new feed changes feed content', function(){
             newFeed = $('.feed').html()
-            expect(newFeed).not.toEqual(oldFeed);
+            expect(newFeed).not.toBe(oldFeed);
         });
         afterEach(function(done){
             loadFeed(0, done);
