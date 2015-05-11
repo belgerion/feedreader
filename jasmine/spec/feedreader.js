@@ -68,12 +68,12 @@ $(function() {
     /* Copied from the RSS Feeds.*/
     describe("Initial Entries", function(){
 
-         /* Loads thr feed, then tests that it has content, and calls the done function when complete*/
+         /* Loads the feed, then tests that it has content, and calls the done function when complete*/
          beforeEach(function(done){
             loadFeed(0, done);
          });
          it('feed has loaded', function(){
-            expect($('.feed .entry')[0]).toBeDefined();
+            expect($('.feed').length).toBeGreaterThan(0);
          });
     });
 
@@ -81,17 +81,18 @@ $(function() {
     describe("New Feed Selection", function(){
         var oldFeed;
         var newFeed;
+        $('.feed').empty();
 
         /* Changes the feeds based on the selection on the menu. Tests that each feed has content different from the previous feeds*/
         beforeEach(function(done){
             oldFeed = $('.feed').html();
-            loadFeed(2, done);
+            loadFeed(1, done);
         });
         it('Loading a new feed changes feed content', function(){
             newFeed = $('.feed').html()
             expect(newFeed).not.toEqual(oldFeed);
         });
-        afterAll(function(done){
+        afterEach(function(done){
             loadFeed(0, done);
         });
     });
