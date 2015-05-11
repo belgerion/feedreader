@@ -81,6 +81,7 @@ $(function() {
     describe("New Feed Selection", function(){
         var oldFeed;
         var newFeed;
+        $('.feed').empty();
 
         /* Changes the feeds based on the selection on the menu. Tests that each feed has content different from the previous feeds*/
         beforeEach(function(done){
